@@ -2,6 +2,7 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
+import { cookies } from "next/headers";
 export default function Login() {
     const router = useRouter();
     const [info, setInfo] = useState({ email: "", password: "" });
@@ -16,24 +17,26 @@ export default function Login() {
         e.preventDefault();
         try {
             setPendingState(true)
-            const res=await signIn('credentials',{
-                email:info.email,
-                password:info.password
-            })
-            if(res?.error){
-                setPendingState(false)
-            }
-            // const response = await fetch('/api/auth/signin', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(info),
-            //   })
-           
-            //   if (response.ok) {
-            //     router.push('/home')
-            //   } else {
-            //     // Handle errors
-            //   }
+            // const res=await signIn('credentials',{
+            //     email:info.email,
+            //     password:info.password
+            // })
+            // if(res?.error){
+            //     setPendingState(false)
+            // }
+            const response = await fetch('/api/auth/signin', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(info),
+              })
+              const data=await response.json()
+              if (response.ok) {
+            // window.localStorage.setItem("payload",JSON.stringify(data.payload))
+            // cookies().set("token",JSON.stringify(data.payload.token))
+               // router.push('/movies')
+              } else {
+                // Handle errors
+              }
             router.replace('/home')
         } catch (error) {
             setPendingState(false)

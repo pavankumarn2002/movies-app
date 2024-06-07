@@ -3,16 +3,11 @@ import bcrypt from 'bcryptjs';
 import { prisma} from '@/lib/client'
 import { NextRequest, NextResponse } from 'next/server';
 
-export async function POST(req: Request, res:Response) {
-  if (req.method !== 'POST') {
-    //return res.status(405).json({ message: 'Method not allowed' });
-    return NextResponse.json({ message: 'Method not allowed' },{status:405})
-  }
-
+export async function POST(req: Request) {
+ 
   const { name, email, password } =await req.json();
 
   if (!email || !password) {
-    //return res.status(400).json({ message: 'Email and password are required' });
     return NextResponse.json({ message: 'Email and password are required' },{status:400})
   }
 
