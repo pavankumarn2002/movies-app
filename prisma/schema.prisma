@@ -22,7 +22,7 @@ model User {
   password       String?
 }
 model Movie {
-  id          String   @id @default(autoincrement())
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
   title       String
   director    String
   releaseDate DateTime
