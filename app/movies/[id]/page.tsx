@@ -50,11 +50,12 @@ const MovieDetailsPage = ({ params }) => {
                     <span className="font-bold">Director:</span> {movie.director}
                 </p>
                 <p className="mb-10">
-                    <span className="font-bold">DirectorRelease Date:</span> {new Date(movie.releaseDate).toLocaleDateString()}
+                    <span className="font-bold">Release Date:</span> {new Date(movie.releaseDate).toLocaleDateString()}
                 </p>
                 <p className="mb-10">
                     <span className="font-bold">DirectorGenre:</span> {movie.genre}
                 </p>
+                <div className="dlex justify-between">
                 <button
                     className="mb-10 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
                     onClick={handleDelete}
@@ -64,6 +65,7 @@ const MovieDetailsPage = ({ params }) => {
                 <button className=" mx-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
                     <Link href={`/movies/update/${id}`}>Update</Link>
                 </button>
+                </div>
             </div>
         </div>
     );
