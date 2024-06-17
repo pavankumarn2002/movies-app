@@ -12,6 +12,7 @@ const MovieDetailsPage = ({ params }) => {
         director: "",
         releaseDate: "",
         genre: "",
+        image:""
     });
     const router = useRouter();
 
@@ -37,7 +38,6 @@ const MovieDetailsPage = ({ params }) => {
         }
     };
 
-    if (!movie) return <div>Loading...</div>;
 
     return (
         <div>
@@ -46,6 +46,7 @@ const MovieDetailsPage = ({ params }) => {
             </Link>
             <div className="flex flex-col justify-center items-center">
                 <h1 className="font-bold mb-10">{movie.title}</h1>
+                <img src={movie.image} width="400" height="400"/>
                 <p className="mb-10">
                     <span className="font-bold">Director:</span> {movie.director}
                 </p>
@@ -55,14 +56,14 @@ const MovieDetailsPage = ({ params }) => {
                 <p className="mb-10">
                     <span className="font-bold">DirectorGenre:</span> {movie.genre}
                 </p>
-                <div className="dlex justify-between">
+                <div className="flex gap-5 justify-between">
                 <button
-                    className="mb-10 bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
+                    className=" bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline"
                     onClick={handleDelete}
                 >
                     Delete
                 </button>
-                <button className=" mx-4 bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
+                <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded focus:outline-none focus:shadow-outline">
                     <Link href={`/movies/update/${id}`}>Update</Link>
                 </button>
                 </div>

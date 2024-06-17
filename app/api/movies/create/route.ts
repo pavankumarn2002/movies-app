@@ -3,11 +3,11 @@ import { prisma} from '@/lib/client'
 
 
 export async function POST(request: Request) {
-  const { title, director, releaseDate, genre } = await request.json();
-
+  const { title, director, releaseDate, genre,image } = await request.json();
+  
   try {
     const newMovie = await prisma.movie.create({
-      data: { title, director, releaseDate: new Date(releaseDate), genre },
+      data: { title, director, releaseDate: new Date(releaseDate), genre,image },
     });
     return NextResponse.json(newMovie, { status: 201 });
   } catch (error) {

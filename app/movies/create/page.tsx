@@ -4,11 +4,13 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import Link from "next/link";
+import { cookies } from "next/headers";
 const CreateMoviePage = () => {
     const [title, setTitle] = useState("");
     const [director, setDirector] = useState("");
     const [releaseDate, setReleaseDate] = useState("");
     const [genre, setGenre] = useState("");
+    const [image, setImage] = useState("");
     const router = useRouter();
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -20,6 +22,8 @@ const CreateMoviePage = () => {
                 director,
                 releaseDate,
                 genre,
+                image
+
             });
             router.push("/movies");
         } catch (error) {
@@ -68,6 +72,15 @@ const CreateMoviePage = () => {
                         type="text"
                         value={genre}
                         onChange={(e) => setGenre(e.target.value)}
+                    />
+                </div>
+                <div className="flex flex-col mb-10">
+                    <label>Image URL</label>
+                    <input
+                        className="mb-8shadow appearance-none border rounded w-[250px] py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text"
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
                     />
                 </div>
                 <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">

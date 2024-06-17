@@ -37,7 +37,7 @@ export default function Login() {
               } else {
                 // Handle errors
               }
-            router.replace('/home')
+            router.replace('/movies')
         } catch (error) {
             setPendingState(false)
         }

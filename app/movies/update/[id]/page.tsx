@@ -10,6 +10,7 @@ const UpdateMoviePage = ({ params }) => {
     const [director, setDirector] = useState("");
     const [releaseDate, setReleaseDate] = useState("");
     const [genre, setGenre] = useState("");
+    const [image, setImage] = useState("");
     const router = useRouter();
 
     useEffect(() => {
@@ -21,6 +22,7 @@ const UpdateMoviePage = ({ params }) => {
                 setDirector(movie.director);
                 setReleaseDate(movie.releaseDate);
                 setGenre(movie.genre);
+                setImage(movie.image)
             } catch (error) {
                 console.error("Error fetching movie:", error);
             }
@@ -39,6 +41,7 @@ const UpdateMoviePage = ({ params }) => {
                 director,
                 releaseDate,
                 genre,
+                image
             });
             router.push(`/movies/${id}`);
         } catch (error) {
@@ -87,6 +90,15 @@ const UpdateMoviePage = ({ params }) => {
                         type="text"
                         value={genre}
                         onChange={(e) => setGenre(e.target.value)}
+                    />
+                </div>
+                <div className="flex flex-col mb-10">
+                    <label>Image URL</label>
+                    <input
+                        className="mb-8shadow appearance-none border rounded w-[250px]  py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        type="text"
+                        value={image}
+                        onChange={(e) => setImage(e.target.value)}
                     />
                 </div>
                 <button className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" type="submit">
